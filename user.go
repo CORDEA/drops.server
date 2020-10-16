@@ -8,11 +8,10 @@ import (
 func addUserRoutes(g *gin.Engine) {
 	user := g.Group("/user")
 
-	user.POST("/login", usr.Handle)
+	user.POST("/login", usr.Login)
 	user.POST("/new", func(context *gin.Context) {
 	})
-	user.GET("/achievements", func(context *gin.Context) {
-	})
+	user.GET("/achievements", usr.GetAchievements)
 	user.GET("/cart", func(context *gin.Context) {
 	})
 	user.POST("/cart", func(context *gin.Context) {

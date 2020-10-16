@@ -17,7 +17,7 @@ type User struct {
 	CreatedAt time.Time `json:"created_at"`
 }
 
-func Handle(ctx *gin.Context) {
+func Login(ctx *gin.Context) {
 	var b body
 	if err := ctx.BindJSON(&b); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
