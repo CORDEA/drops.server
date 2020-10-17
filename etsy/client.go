@@ -1,6 +1,6 @@
 package etsy
 
-const BaseUrl = "https://openapi.etsy.com/v2/"
+const BaseUrl = "https://openapi.etsy.com/v2"
 
 type Client struct {
 	key string
