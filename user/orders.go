@@ -35,7 +35,7 @@ type Order struct {
 	IsCancelable bool         `json:"is_cancelable"`
 }
 
-func GetOrders(ctx *gin.Context) {
+func getOrders(ctx *gin.Context) {
 	// TODO
 	ctx.JSON(
 		http.StatusOK,
@@ -57,6 +57,6 @@ func GetOrders(ctx *gin.Context) {
 	)
 }
 
-func CancelOrder(ctx *gin.Context) {
+func cancelOrder(ctx *gin.Context) {
 	ctx.String(http.StatusOK, "")
 }
