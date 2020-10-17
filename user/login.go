@@ -26,3 +26,13 @@ func Login(ctx *gin.Context) {
 	// TODO
 	ctx.JSON(http.StatusOK, User{Id: "id", Name: "name", CreatedAt: time.Time{}})
 }
+
+func SignUp(ctx *gin.Context) {
+	var b body
+	if err := ctx.BindJSON(&b); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	// TODO
+	ctx.JSON(http.StatusOK, User{Id: "id", Name: "name", CreatedAt: time.Time{}})
+}
