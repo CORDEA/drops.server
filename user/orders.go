@@ -9,10 +9,10 @@ import (
 type Status int
 
 const (
-	CONFIRMED = iota + 1
-	SHIPPED
-	DELIVERED
-	CANCELED
+	Confirmed = iota + 1
+	Shipped
+	Delivered
+	Canceled
 )
 
 func (s Status) String() string {
@@ -42,7 +42,7 @@ func getOrders(ctx *gin.Context) {
 		Orders{[]Order{
 			{
 				Id:     "id",
-				Status: CONFIRMED,
+				Status: Confirmed,
 				Items: []items.Item{
 					{
 						Id:       "id",
