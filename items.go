@@ -1,12 +1,14 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	itm "drops/items"
+	"github.com/gin-gonic/gin"
+)
 
 func addItemRoutes(g *gin.Engine) {
 	items := g.Group("/items")
 
-	items.GET("/", func(context *gin.Context) {
-	})
+	items.GET("/", itm.GetItems)
 	items.GET("/:id", func(context *gin.Context) {
 	})
 }
