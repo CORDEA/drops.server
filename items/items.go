@@ -16,7 +16,7 @@ type Item struct {
 	ImageUrl string `json:"image_url"`
 }
 
-func getItems(ctx *gin.Context) {
+func (r *Route) getItems(ctx *gin.Context) {
 	ctx.JSON(
 		http.StatusOK,
 		Items{[]Item{
@@ -30,7 +30,7 @@ func getItems(ctx *gin.Context) {
 	)
 }
 
-func getItemDetails(ctx *gin.Context) {
+func (r *Route) getItemDetails(ctx *gin.Context) {
 	// TODO
 	ctx.JSON(
 		http.StatusOK,

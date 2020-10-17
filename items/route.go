@@ -1,12 +1,21 @@
 package items
 
 import (
+	"drops/etsy"
 	"github.com/gin-gonic/gin"
 )
 
-func AddRoutes(g *gin.Engine) {
+type Route struct {
+	client *etsy.Client
+}
+
+func NewRoute(client *etsy.Client) *Route {
+	return &Route{client}
+}
+
+func (r *Route) Apply(g *gin.Engine) {
 	items := g.Group("/items")
 
-	items.GET("/", getItems)
-	items.GET("/:id", getItemDetails)
+	items.GET("/", r.getItems)
+	items.GET("/:id", r.getItemDetails)
 }

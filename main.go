@@ -14,6 +14,6 @@ func main() {
 	key := os.Getenv("ETSY_API_KEY")
 	client := etsy.NewClient(key)
 	user.AddRoutes(router)
-	items.AddRoutes(router)
+	items.NewRoute(client).Apply(router)
 	router.Run()
 }
