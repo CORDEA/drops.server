@@ -29,3 +29,18 @@ func GetItems(ctx *gin.Context) {
 		}},
 	)
 }
+
+func GetItemDetails(ctx *gin.Context) {
+	// TODO
+	ctx.JSON(
+		http.StatusOK,
+		Items{[]Item{
+			{
+				Id:       "id",
+				Name:     "name",
+				Price:    100,
+				ImageUrl: "url",
+			},
+		}},
+	)
+}

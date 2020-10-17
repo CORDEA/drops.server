@@ -9,6 +9,5 @@ func addItemRoutes(g *gin.Engine) {
 	items := g.Group("/items")
 
 	items.GET("/", itm.GetItems)
-	items.GET("/:id", func(context *gin.Context) {
-	})
+	items.GET("/:id", itm.GetItemDetails)
 }
