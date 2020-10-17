@@ -1,6 +1,10 @@
 package user
 
-import "drops/items"
+import (
+	"drops/items"
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 type Status int
 
@@ -29,4 +33,26 @@ type Order struct {
 	Status       Status       `json:"status"`
 	Items        []items.Item `json:"items"`
 	IsCancelable bool         `json:"is_cancelable"`
+}
+
+func GetOrders(ctx *gin.Context) {
+	// TODO
+	ctx.JSON(
+		http.StatusOK,
+		Orders{[]Order{
+			{
+				Id:     "id",
+				Status: CONFIRMED,
+				Items: []items.Item{
+					{
+						Id:       "id",
+						Name:     "name",
+						Price:    100,
+						ImageUrl: "url",
+					},
+				},
+				IsCancelable: true,
+			},
+		}},
+	)
 }
