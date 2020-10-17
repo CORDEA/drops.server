@@ -56,3 +56,7 @@ func GetOrders(ctx *gin.Context) {
 		}},
 	)
 }
+
+func CancelOrder(ctx *gin.Context) {
+	ctx.String(http.StatusOK, "")
+}

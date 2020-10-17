@@ -15,6 +15,5 @@ func addUserRoutes(g *gin.Engine) {
 	user.GET("/cart", usr.GetCartItems)
 	user.POST("/cart", usr.AddCartItem)
 	user.GET("/orders", usr.GetOrders)
-	user.PATCH("/orders/cancel/:id", func(context *gin.Context) {
-	})
+	user.PATCH("/orders/cancel/:id", usr.CancelOrder)
 }
