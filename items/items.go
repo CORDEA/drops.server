@@ -1,6 +1,7 @@
 package items
 
 import (
+	"drops/etsy"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -31,18 +32,49 @@ type Item struct {
 	Recipient          string   `json:"recipient"`
 }
 
+func from(listing etsy.Listing, images *etsy.ListingImages) Item {
+	var img []string
+	for _, result := range images.Results {
+		img = append(img, result.ImageUrl)
+	}
+	return Item{
+		Id:                 listing.Id,
+		Name:               listing.Title,
+		ImageUrls:          img,
+		CreatedAt:          listing.CreatedAt,
+		EndedAt:            listing.EndedAt,
+		UpdatedAt:          listing.UpdatedAt,
+		Price:              listing.Price,
+		CurrencyCode:       listing.CurrencyCode,
+		Tags:               listing.Tags,
+		Materials:          listing.Materials,
+		Views:              listing.Views,
+		ItemWeight:         listing.ItemWeight,
+		ItemWeightUnit:     listing.ItemWeightUnit,
+		ItemLength:         listing.ItemLength,
+		ItemWidth:          listing.ItemWidth,
+		ItemHeight:         listing.ItemHeight,
+		ItemDimensionsUnit: listing.ItemDimensionsUnit,
+		Recipient:          listing.Recipient,
+	}
+}
+
 func (r *Route) getItems(ctx *gin.Context) {
-	ctx.JSON(
-		http.StatusOK,
-		Items{[]Item{
-			{
-				Id:       "id",
-				Name:     "name",
-				Price:    100,
-				ImageUrl: "url",
-			},
-		}},
-	)
+	earrings, err := r.client.FindActiveEarrings()
+	if err != nil {
+		ctx.String(http.StatusInternalServerError, "")
+		return
+	}
+	var items []Item
+	for _, result := range earrings.Results {
+		images, err := r.client.FindImages(result.Id)
+		if err != nil {
+			ctx.String(http.StatusInternalServerError, "")
+			return
+		}
+		items = append(items, from(result, images))
+	}
+	ctx.JSON(http.StatusOK, Items{items})
 }
 
 func (r *Route) getItemDetails(ctx *gin.Context) {
