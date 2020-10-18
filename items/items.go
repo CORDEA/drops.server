@@ -76,18 +76,3 @@ func (r *Route) getItems(ctx *gin.Context) {
 	}
 	ctx.JSON(http.StatusOK, Items{items})
 }
-
-func (r *Route) getItemDetails(ctx *gin.Context) {
-	// TODO
-	ctx.JSON(
-		http.StatusOK,
-		Items{[]Item{
-			{
-				Id:       "id",
-				Name:     "name",
-				Price:    100,
-				ImageUrl: "url",
-			},
-		}},
-	)
-}

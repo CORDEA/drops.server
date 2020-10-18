@@ -17,5 +17,4 @@ func (r *Route) Apply(g *gin.Engine) {
 	items := g.Group("/items")
 
 	items.GET("/", r.getItems)
-	items.GET("/:id", r.getItemDetails)
 }
