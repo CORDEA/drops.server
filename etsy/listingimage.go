@@ -14,6 +14,7 @@ type ListingImages struct {
 
 type ListingImage struct {
 	Id       string `json:"id"`
+	Rank     string `json:"rank"`
 	ImageUrl string `json:"url_570xN"`
 }
 

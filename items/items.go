@@ -13,11 +13,11 @@ type Item struct {
 	Id                 string   `json:"id"`
 	Name               string   `json:"name"`
 	Description        string   `json:"description"`
-	ImageUrl           string   `json:"image_url"`
+	ImageUrls          []string `json:"image_urls"`
 	CreatedAt          float32  `json:"created_at"`
 	EndedAt            float32  `json:"ended_at"`
 	UpdatedAt          float32  `json:"updated_at"`
-	Price              int      `json:"price"`
+	Price              string   `json:"price"`
 	CurrencyCode       string   `json:"currency_code"`
 	Tags               []string `json:"tags"`
 	Materials          []string `json:"materials"`
