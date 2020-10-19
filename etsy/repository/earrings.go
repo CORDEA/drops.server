@@ -1,15 +1,17 @@
 package repository
 
-import "github.com/CORDEA/drops.server/etsy"
+import (
+	"github.com/CORDEA/drops.server/etsy/api"
+)
 
 type EarringsRepository struct {
-	client *etsy.Client
+	client *api.Client
 }
 
-func (r *EarringsRepository) FindAll() (*etsy.Listings, error) {
+func (r *EarringsRepository) FindAll() (*api.Listings, error) {
 	return r.client.FindActiveEarrings()
 }
 
-func (r *EarringsRepository) FindImages(id string) (*etsy.ListingImages, error) {
+func (r *EarringsRepository) FindImages(id string) (*api.ListingImages, error) {
 	return r.client.FindImages(id)
 }

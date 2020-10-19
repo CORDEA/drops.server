@@ -1,15 +1,15 @@
 package items
 
 import (
-	"github.com/CORDEA/drops.server/etsy"
+	"github.com/CORDEA/drops.server/etsy/api"
 	"github.com/gin-gonic/gin"
 )
 
 type Route struct {
-	client *etsy.Client
+	client *api.Client
 }
 
-func NewRoute(client *etsy.Client) *Route {
+func NewRoute(client *api.Client) *Route {
 	return &Route{client}
 }
 

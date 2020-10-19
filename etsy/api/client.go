@@ -1,4 +1,4 @@
-package etsy
+package api
 
 const BaseUrl = "https://openapi.etsy.com/v2"
 

@@ -1,7 +1,7 @@
 package items
 
 import (
-	"github.com/CORDEA/drops.server/etsy"
+	"github.com/CORDEA/drops.server/etsy/api"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -32,7 +32,7 @@ type Item struct {
 	Recipient          string   `json:"recipient"`
 }
 
-func from(listing etsy.Listing, images *etsy.ListingImages) Item {
+func from(listing api.Listing, images *api.ListingImages) Item {
 	var img []string
 	for _, result := range images.Results {
 		img = append(img, result.ImageUrl)

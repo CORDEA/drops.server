@@ -1,4 +1,4 @@
-package etsy
+package api
 
 import (
 	"encoding/json"
