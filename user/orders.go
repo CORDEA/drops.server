@@ -1,7 +1,7 @@
 package user
 
 import (
-	"drops/items"
+	"github.com/CORDEA/drops.server/items"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

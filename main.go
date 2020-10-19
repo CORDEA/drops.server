@@ -1,9 +1,9 @@
 package main
 
 import (
-	"drops/etsy"
-	"drops/items"
-	"drops/user"
+	"github.com/CORDEA/drops.server/etsy"
+	"github.com/CORDEA/drops.server/items"
+	"github.com/CORDEA/drops.server/user"
 	"github.com/gin-gonic/gin"
 	"os"
 )

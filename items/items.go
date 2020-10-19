@@ -1,7 +1,7 @@
 package items
 
 import (
-	"drops/etsy"
+	"github.com/CORDEA/drops.server/etsy"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
