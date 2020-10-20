@@ -1,6 +1,7 @@
 package user
 
 import (
+	"github.com/CORDEA/drops.server/etsy/model"
 	"github.com/CORDEA/drops.server/items"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -31,7 +32,7 @@ type Orders struct {
 type Order struct {
 	Id           string       `json:"id"`
 	Status       Status       `json:"status"`
-	Items        []items.Item `json:"items"`
+	Items        []model.Item `json:"items"`
 	IsCancelable bool         `json:"is_cancelable"`
 }
 

@@ -8,6 +8,10 @@ type EarringsRepository struct {
 	client *api.Client
 }
 
+func NewEarringsRepository(client *api.Client) *EarringsRepository {
+	return &EarringsRepository{client}
+}
+
 func (r *EarringsRepository) FindAll() (*api.Listings, error) {
 	return r.client.FindActiveEarrings()
 }

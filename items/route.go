@@ -1,16 +1,16 @@
 package items
 
 import (
-	"github.com/CORDEA/drops.server/etsy/api"
+	"github.com/CORDEA/drops.server/etsy/usecase"
 	"github.com/gin-gonic/gin"
 )
 
 type Route struct {
-	client *api.Client
+	getEarrings *usecase.GetEarrings
 }
 
-func NewRoute(client *api.Client) *Route {
-	return &Route{client}
+func NewRoute(getEarrings *usecase.GetEarrings) *Route {
+	return &Route{getEarrings}
 }
 
 func (r *Route) Apply(g *gin.Engine) {

@@ -1,6 +1,7 @@
 package user
 
 import (
+	"github.com/CORDEA/drops.server/etsy/model"
 	"github.com/CORDEA/drops.server/items"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -15,7 +16,7 @@ type CartItems struct {
 }
 
 type CartItem struct {
-	Item          items.Item `json:"item"`
+	Item          model.Item `json:"item"`
 	NumberOfItems int        `json:"number_of_items"`
 }
 
