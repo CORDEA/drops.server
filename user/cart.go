@@ -22,7 +22,7 @@ type CartItem struct {
 func (r *Route) getCartItems(ctx *gin.Context) {
 	earrings, err := r.getEarrings.Execute()
 	if err != nil {
-		ctx.String(http.StatusInternalServerError, "")
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 	ctx.JSON(http.StatusOK, CartItems{
