@@ -3,6 +3,7 @@ package user
 import (
 	"github.com/CORDEA/drops.server/etsy/model"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"net/http"
 )
 
@@ -41,22 +42,32 @@ func (r *Route) getOrders(ctx *gin.Context) {
 		ctx.String(http.StatusInternalServerError, "")
 		return
 	}
+	var orders []Order
+	id, err := uuid.NewUUID()
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	orders = append(orders, Order{
+		Id:           id.String(),
+		Status:       Confirmed,
+		Items:        earrings.Items[0:3],
+		IsCancelable: true,
+	})
+	id, err = uuid.NewUUID()
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	orders = append(orders, Order{
+		Id:           id.String(),
+		Status:       Delivered,
+		Items:        earrings.Items[4:5],
+		IsCancelable: false,
+	})
 	ctx.JSON(
 		http.StatusOK,
-		Orders{[]Order{
-			{
-				Id:           "id1",
-				Status:       Confirmed,
-				Items:        earrings.Items[0:3],
-				IsCancelable: true,
-			},
-			{
-				Id:           "id2",
-				Status:       Delivered,
-				Items:        earrings.Items[4:5],
-				IsCancelable: false,
-			},
-		}},
+		Orders{orders},
 	)
 }
 

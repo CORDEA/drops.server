@@ -2,6 +2,7 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"net/http"
 	"time"
 )
@@ -23,8 +24,12 @@ func (r *Route) login(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	// TODO
-	ctx.JSON(http.StatusOK, User{Id: "id", Name: "name", CreatedAt: time.Time{}})
+	id, err := uuid.NewUUID()
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusOK, User{Id: id.String(), Name: "name", CreatedAt: time.Time{}})
 }
 
 func (r *Route) signUp(ctx *gin.Context) {
@@ -33,6 +38,10 @@ func (r *Route) signUp(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	// TODO
-	ctx.JSON(http.StatusOK, User{Id: "id", Name: "name", CreatedAt: time.Time{}})
+	id, err := uuid.NewUUID()
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	ctx.JSON(http.StatusOK, User{Id: id.String(), Name: "name", CreatedAt: time.Time{}})
 }
