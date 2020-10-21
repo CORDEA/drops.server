@@ -17,7 +17,7 @@ type User struct {
 	CreatedAt time.Time `json:"created_at"`
 }
 
-func login(ctx *gin.Context) {
+func (r *Route) login(ctx *gin.Context) {
 	var b body
 	if err := ctx.BindJSON(&b); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -27,7 +27,7 @@ func login(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, User{Id: "id", Name: "name", CreatedAt: time.Time{}})
 }
 
-func signUp(ctx *gin.Context) {
+func (r *Route) signUp(ctx *gin.Context) {
 	var b body
 	if err := ctx.BindJSON(&b); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

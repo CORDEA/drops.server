@@ -18,7 +18,7 @@ func main() {
 	earringsRepo := repository.NewEarringsRepository(client)
 	getEarrings := usecase.NewGetEarrings(earringsRepo)
 
-	user.AddRoutes(router)
+	user.NewRoute(getEarrings).Apply(router)
 	items.NewRoute(getEarrings).Apply(router)
 	router.Run()
 }

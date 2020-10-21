@@ -12,7 +12,7 @@ type Achievement struct {
 	Progress    float32 `json:"progress"`
 }
 
-func getAchievements(ctx *gin.Context) {
+func (r *Route) getAchievements(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, Achievement{
 		Name:        "name",
 		Description: "description",

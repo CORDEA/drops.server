@@ -20,7 +20,7 @@ type CartItem struct {
 	NumberOfItems int        `json:"number_of_items"`
 }
 
-func getCartItems(ctx *gin.Context) {
+func (r *Route) getCartItems(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, CartItems{
 		Items: []CartItem{
 			{
@@ -36,7 +36,7 @@ func getCartItems(ctx *gin.Context) {
 	})
 }
 
-func addCartItem(ctx *gin.Context) {
+func (r *Route) addCartItem(ctx *gin.Context) {
 	var b addCartItemBody
 	if err := ctx.BindJSON(&b); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

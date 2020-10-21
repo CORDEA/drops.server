@@ -1,17 +1,26 @@
 package user
 
 import (
+	"github.com/CORDEA/drops.server/etsy/usecase"
 	"github.com/gin-gonic/gin"
 )
 
-func AddRoutes(g *gin.Engine) {
+type Route struct {
+	getEarrings *usecase.GetEarrings
+}
+
+func NewRoute(getEarrings *usecase.GetEarrings) *Route {
+	return &Route{getEarrings}
+}
+
+func (r *Route) Apply(g *gin.Engine) {
 	user := g.Group("/user")
 
-	user.POST("/login", login)
-	user.POST("/new", signUp)
-	user.GET("/achievements", getAchievements)
-	user.GET("/cart", getCartItems)
-	user.POST("/cart", addCartItem)
-	user.GET("/orders", getOrders)
-	user.PATCH("/orders/cancel/:id", cancelOrder)
+	user.POST("/login", r.login)
+	user.POST("/new", r.signUp)
+	user.GET("/achievements", r.getAchievements)
+	user.GET("/cart", r.getCartItems)
+	user.POST("/cart", r.addCartItem)
+	user.GET("/orders", r.getOrders)
+	user.PATCH("/orders/cancel/:id", r.cancelOrder)
 }
