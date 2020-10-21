@@ -2,7 +2,6 @@ package user
 
 import (
 	"github.com/CORDEA/drops.server/etsy/model"
-	"github.com/CORDEA/drops.server/items"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -21,15 +20,27 @@ type CartItem struct {
 }
 
 func (r *Route) getCartItems(ctx *gin.Context) {
+	earrings, err := r.getEarrings.Execute()
+	if err != nil {
+		ctx.String(http.StatusInternalServerError, "")
+		return
+	}
 	ctx.JSON(http.StatusOK, CartItems{
 		Items: []CartItem{
 			{
-				items.Item{
-					Id:       "id",
-					Name:     "name",
-					Price:    100,
-					ImageUrl: "url",
-				},
+				earrings.Items[0],
+				1,
+			},
+			{
+				earrings.Items[2],
+				4,
+			},
+			{
+				earrings.Items[3],
+				2,
+			},
+			{
+				earrings.Items[5],
 				1,
 			},
 		},
