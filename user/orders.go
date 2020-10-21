@@ -2,7 +2,6 @@ package user
 
 import (
 	"github.com/CORDEA/drops.server/etsy/model"
-	"github.com/CORDEA/drops.server/items"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -37,22 +36,25 @@ type Order struct {
 }
 
 func (r *Route) getOrders(ctx *gin.Context) {
-	// TODO
+	earrings, err := r.getEarrings.Execute()
+	if err != nil {
+		ctx.String(http.StatusInternalServerError, "")
+		return
+	}
 	ctx.JSON(
 		http.StatusOK,
 		Orders{[]Order{
 			{
-				Id:     "id",
-				Status: Confirmed,
-				Items: []items.Item{
-					{
-						Id:       "id",
-						Name:     "name",
-						Price:    100,
-						ImageUrl: "url",
-					},
-				},
+				Id:           "id1",
+				Status:       Confirmed,
+				Items:        earrings.Items[0:3],
 				IsCancelable: true,
+			},
+			{
+				Id:           "id2",
+				Status:       Delivered,
+				Items:        earrings.Items[4:5],
+				IsCancelable: false,
 			},
 		}},
 	)
