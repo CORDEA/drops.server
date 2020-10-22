@@ -20,9 +20,9 @@ type Listing struct {
 	UserId             string   `json:"user_id"`
 	Title              string   `json:"title"`
 	Description        string   `json:"description"`
-	CreatedAt          float32  `json:"creation_tsz"`
-	EndedAt            float32  `json:"ending_tsz"`
-	UpdatedAt          float32  `json:"last_modified_tsz"`
+	CreatedAt          int64    `json:"creation_tsz"`
+	EndedAt            int64    `json:"ending_tsz"`
+	UpdatedAt          int64    `json:"last_modified_tsz"`
 	Price              string   `json:"price"`
 	CurrencyCode       string   `json:"currency_code"`
 	Quantity           int      `json:"quantity"`
