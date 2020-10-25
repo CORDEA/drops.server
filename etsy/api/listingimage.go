@@ -25,6 +25,7 @@ func (c *Client) FindImages(id string) (*ListingImages, error) {
 	}
 	values := u.Query()
 	values.Add("api_key", c.key)
+	u.RawQuery = values.Encode()
 	response, err := http.Get(u.String())
 	if err != nil {
 		return nil, err

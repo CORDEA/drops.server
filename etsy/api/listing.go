@@ -47,6 +47,7 @@ func (c *Client) FindActiveEarrings() (*Listings, error) {
 	values := u.Query()
 	values.Add("api_key", c.key)
 	values.Add("taxonomy_id", TaxonomyId)
+	u.RawQuery = values.Encode()
 	response, err := http.Get(u.String())
 	if err != nil {
 		return nil, err
