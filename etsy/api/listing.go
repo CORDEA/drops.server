@@ -15,9 +15,9 @@ type Listings struct {
 }
 
 type Listing struct {
-	Id                 string   `json:"listing_id"`
+	Id                 int64    `json:"listing_id"`
 	State              string   `json:"state"`
-	UserId             string   `json:"user_id"`
+	UserId             int64    `json:"user_id"`
 	Title              string   `json:"title"`
 	Description        string   `json:"description"`
 	CreatedAt          int64    `json:"creation_tsz"`

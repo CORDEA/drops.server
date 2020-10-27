@@ -29,6 +29,6 @@ func (r *EarringsRepository) FindAll() (*api.Listings, error) {
 	return res, err
 }
 
-func (r *EarringsRepository) FindImages(id string) (*api.ListingImages, error) {
+func (r *EarringsRepository) FindImages(id int64) (*api.ListingImages, error) {
 	return r.client.FindImages(id)
 }

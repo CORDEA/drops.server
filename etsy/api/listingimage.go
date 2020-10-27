@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strconv"
 )
 
 type ListingImages struct {
@@ -13,13 +14,13 @@ type ListingImages struct {
 }
 
 type ListingImage struct {
-	Id       string `json:"id"`
+	Id       int64  `json:"id"`
 	Rank     string `json:"rank"`
 	ImageUrl string `json:"url_570xN"`
 }
 
-func (c *Client) FindImages(id string) (*ListingImages, error) {
-	u, err := url.Parse(BaseUrl + "/listings/" + id + "/images")
+func (c *Client) FindImages(id int64) (*ListingImages, error) {
+	u, err := url.Parse(BaseUrl + "/listings/" + strconv.FormatInt(id, 10) + "/images")
 	if err != nil {
 		return nil, err
 	}
