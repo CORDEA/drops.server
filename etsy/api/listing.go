@@ -30,11 +30,11 @@ type Listing struct {
 	TaxonomyId         int      `json:"taxonomy_id"`
 	Materials          []string `json:"materials"`
 	Views              int      `json:"views"`
-	ItemWeight         int      `json:"item_weight"`
+	ItemWeight         string   `json:"item_weight"`
 	ItemWeightUnit     string   `json:"item_weight_unit"`
-	ItemLength         int      `json:"item_length"`
-	ItemWidth          int      `json:"item_width"`
-	ItemHeight         int      `json:"item_height"`
+	ItemLength         string   `json:"item_length"`
+	ItemWidth          string   `json:"item_width"`
+	ItemHeight         string   `json:"item_height"`
 	ItemDimensionsUnit string   `json:"item_dimensions_unit"`
 	Recipient          string   `json:"recipient"`
 }
