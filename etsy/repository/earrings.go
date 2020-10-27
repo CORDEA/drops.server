@@ -3,9 +3,11 @@ package repository
 import (
 	"github.com/CORDEA/drops.server/etsy/api"
 	"github.com/patrickmn/go-cache"
+	"strconv"
 )
 
 const EarringsCacheKey = "earrings"
+const ImagesCacheKeyPrefix = "images"
 
 type EarringsRepository struct {
 	client *api.Client
@@ -30,5 +32,15 @@ func (r *EarringsRepository) FindAll() (*api.Listings, error) {
 }
 
 func (r *EarringsRepository) FindImages(id int64) (*api.ListingImages, error) {
-	return r.client.FindImages(id)
+	key := ImagesCacheKeyPrefix + strconv.FormatInt(id, 10)
+	if c, found := r.cache.Get(key); found {
+		return c.(*api.ListingImages), nil
+	}
+	res, err := r.client.FindImages(id)
+	if err == nil {
+		r.cache.Set(key, res, cache.DefaultExpiration)
+	} else {
+		r.cache.Delete(key)
+	}
+	return res, err
 }
