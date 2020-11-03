@@ -10,7 +10,7 @@ import (
 type Status int
 
 const (
-	Confirmed = iota + 1
+	Confirmed Status = iota + 1
 	Shipped
 	Delivered
 	Canceled
@@ -31,7 +31,7 @@ type Orders struct {
 
 type Order struct {
 	Id           string       `json:"id"`
-	Status       Status       `json:"status"`
+	Status       string       `json:"status"`
 	Items        []model.Item `json:"items"`
 	IsCancelable bool         `json:"is_cancelable"`
 }
@@ -50,7 +50,7 @@ func (r *Route) getOrders(ctx *gin.Context) {
 	}
 	orders = append(orders, Order{
 		Id:           id.String(),
-		Status:       Confirmed,
+		Status:       Confirmed.String(),
 		Items:        earrings.Items[0:3],
 		IsCancelable: true,
 	})
@@ -61,7 +61,7 @@ func (r *Route) getOrders(ctx *gin.Context) {
 	}
 	orders = append(orders, Order{
 		Id:           id.String(),
-		Status:       Delivered,
+		Status:       Delivered.String(),
 		Items:        earrings.Items[4:5],
 		IsCancelable: false,
 	})
