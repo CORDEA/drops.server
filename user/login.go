@@ -13,9 +13,14 @@ type body struct {
 }
 
 type User struct {
-	Id        string    `json:"id"`
-	Name      string    `json:"name"`
-	CreatedAt time.Time `json:"created_at"`
+	Id          int64     `json:"id"`
+	Name        string    `json:"name"`
+	Description string    `json:"description"`
+	ImageUrl    string    `json:"image_url"`
+	City        string    `json:"city"`
+	Rank        uint8     `json:"rank"`
+	CreatedAt   time.Time `json:"created_at"`
+	Birthday    time.Time `json:"birthday"`
 }
 
 func (r *Route) login(ctx *gin.Context) {
@@ -29,7 +34,16 @@ func (r *Route) login(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	ctx.JSON(http.StatusOK, User{Id: id.String(), Name: "name", CreatedAt: time.Time{}})
+	ctx.JSON(http.StatusOK, User{
+		Id:          int64(id.ID()),
+		Name:        "name",
+		Description: "description",
+		ImageUrl:    "",
+		City:        "Tokyo",
+		Rank:        1,
+		CreatedAt:   time.Time{},
+		Birthday:    time.Time{},
+	})
 }
 
 func (r *Route) signUp(ctx *gin.Context) {
@@ -43,5 +57,14 @@ func (r *Route) signUp(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	ctx.JSON(http.StatusOK, User{Id: id.String(), Name: "name", CreatedAt: time.Time{}})
+	ctx.JSON(http.StatusOK, User{
+		Id:          int64(id.ID()),
+		Name:        "name",
+		Description: "description",
+		ImageUrl:    "",
+		City:        "Tokyo",
+		Rank:        1,
+		CreatedAt:   time.Time{},
+		Birthday:    time.Time{},
+	})
 }
