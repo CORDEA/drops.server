@@ -16,6 +16,7 @@ func NewRoute(getEarrings *usecase.GetEarrings) *Route {
 func (r *Route) Apply(g *gin.Engine) {
 	user := g.Group("/user")
 
+	user.GET("/", r.getUser)
 	user.POST("/login", r.login)
 	user.POST("/new", r.signUp)
 	user.GET("/achievements", r.getAchievements)

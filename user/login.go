@@ -12,17 +12,6 @@ type body struct {
 	Password     string `json:"password"`
 }
 
-type User struct {
-	Id          int64     `json:"id"`
-	Name        string    `json:"name"`
-	Description string    `json:"description"`
-	ImageUrl    string    `json:"image_url"`
-	City        string    `json:"city"`
-	Rank        uint8     `json:"rank"`
-	CreatedAt   time.Time `json:"created_at"`
-	Birthday    time.Time `json:"birthday"`
-}
-
 func (r *Route) login(ctx *gin.Context) {
 	var b body
 	if err := ctx.BindJSON(&b); err != nil {
